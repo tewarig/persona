@@ -123,3 +123,9 @@ Research then collects two separate sets, and never confuses them:
 Most people get this backwards. Famous quotes are the least representative thing a person ever said — polished, atypical, heavily edited — and building from them produces a keyword generator. But they're excellent for verification, because everyone already agrees they sound right. So the finished spec gets tested against them: *could these axes have produced this line?* If not, it's nearly always stance or friction, and those get re-derived.
 
 Saved voices land in `personas/` — gitignored, yours. If one turns out well and other people would want it, the skill offers to send it upstream. The bar for the shipped library is built from real sources, not assumption; nine entries were cut for failing exactly that.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+The characters themselves aren't mine. Rick Sanchez, Ben Tennyson and the rest belong to their respective owners, and the specs here are commentary and parody, not licensed material. Where a real person is involved the skill's own rules apply: affectionate impression, never forgery. Anchor lines are invented; genuine quotes are marked as genuine and sourced.
