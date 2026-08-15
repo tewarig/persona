@@ -32,7 +32,7 @@ For one project only, clone into that repo's `.claude/skills/persona` instead an
 | `/persona <name> --dial 4` | Same thing, by number |
 | `/persona off` | Back to normal |
 | `/persona list` | Show library + saved voices |
-| `/persona add <name>` | Build a new voice with you — interview, research, verify, keep |
+| `/persona add <name>` | Build a new voice with you — interview, research, verify, save, then wear it |
 | `/persona save <name>` | Persist the current voice, including your corrections |
 
 ### The dial
@@ -59,7 +59,7 @@ Arguments aren't limited to the library. `/persona a Victorian butler who disapp
 
 Two ideas do the work.
 
-**A voice is not a catchphrase list.** Catchphrases collapse the moment the conversation goes somewhere they don't cover, which in a coding session is immediately. So every voice is built on eight axes — lexicon, syntax, register, stance, reference well, tics, rhetorical moves, negative space — reproducing *how someone generates speech* rather than *what they once said*. The test a spec has to pass: could this voice explain a CrashLoopBackOff and still sound like itself?
+**A voice is not a catchphrase list.** Catchphrases collapse the moment the conversation goes somewhere they don't cover, which in a coding session is immediately. So every voice is built on eight axes — lexicon, syntax, register, stance, reference well, tics, rhetorical moves, negative space — reproducing *how someone generates language* rather than *what they once said*. The test a spec has to pass: could this voice explain a CrashLoopBackOff and still read like itself?
 
 **It's not a costume, it's a way of handling the work.** Voice is only half. The other half is *manner* — what the reply leads with, how long it runs, whether it pushes back on a bad plan, how it treats your mistake, whether it asks or just acts. Voice is what you notice in two lines; manner is what you feel across a session, and it's the half that changes the replies you actually get. Rick isn't Rick because he says *Morty* — he's Rick because he tells you the question was stupid and then answers it correctly without being asked twice.
 
@@ -111,7 +111,7 @@ The most useful voice in here probably isn't a celebrity. Ask Claude to read you
 
 ## Adding a voice
 
-`/persona add <name>` runs a guided build: a three-question interview, research, a verification pass, then it saves.
+`/persona add <name>` runs a guided build: a three-question interview, research, a verification pass, a save — and then it puts the voice on, in the same reply. Building a voice ends with wearing it; handing back a filepath and waiting to be asked is the most disappointing way to finish.
 
 The interview asks who, **a line of theirs you love**, and what you want the voice *for*. That middle question does more work than it looks — every well-known figure has several versions, and the quote you reach for first says which one you mean. Someone who loves Rick's nihilism speech wants a different Rick than someone who loves the therapy monologue. A spec can only have one centre of gravity.
 
@@ -124,7 +124,9 @@ Research then collects two separate sets, and never confuses them:
 
 Most people get this backwards. Famous quotes are the least representative thing a person ever said — polished, atypical, heavily edited — and building from them produces a keyword generator. But they're excellent for verification, because everyone already agrees they sound right. So the finished spec gets tested against them: *could these axes have produced this line?* If not, it's nearly always stance or friction, and those get re-derived.
 
-Saved voices land in `personas/` — gitignored, yours. If one turns out well and other people would want it, the skill offers to send it upstream. The bar for the shipped library is built from real sources, not assumption; nine entries were cut for failing exactly that.
+Saved voices land in `personas/` — gitignored, yours. A saved voice overrides a library entry of the same name, so you can keep your own Rick without touching the shipped one.
+
+If one turns out well and other people would want it, the skill offers to send it upstream. The bar for the shipped library is **built from real sources, not assumption** — nine entries were cut for failing exactly that. The four that remain carry a source trail naming their training and test sets, and a contributed entry needs the same.
 
 ## License
 
