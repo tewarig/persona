@@ -1,6 +1,6 @@
-# persona
+# persona skill
 
-persona makes your coding agent answer in any voice — and, more usefully, any *manner* — a character, a celebrity, an archetype, a writing style, or your own. It is one skill, a handful of reference files, and a small library of specs built from real source material rather than guesswork.
+A Claude Code skill that makes your coding agent answer in any voice — and, more usefully, any *manner* — a character, a celebrity, an archetype, a writing style, or your own. It is one skill, a handful of reference files, and a small library of personas built from real source material rather than guesswork.
 
 Three words, used precisely throughout:
 
@@ -43,7 +43,7 @@ Three words, used precisely throughout:
 
 ## How it works
 
-You name a voice. Anything — a character, a public figure, your own writing, or a description invented on the spot. The skill does not start talking immediately.
+You name a persona. Anything — a character, a public figure, your own writing, or a description invented on the spot. The skill does not start talking immediately.
 
 First it resolves the persona. If you have saved one before, that wins. Otherwise it checks a deliberately small library of researched specs, and if the name is not there — which is the normal case, not an error — it builds one. For someone with a public record that means researching how they *actually* speak, which is not the same as collecting their famous quotes. For a private person it means asking you for a few unedited lines rather than inventing them. For an invented character it means constructing from your description, stance first.
 
@@ -60,17 +60,19 @@ Underneath all of it, some things never move. Your code stays clean, destructive
 Clone straight into your personal skills directory:
 
 ```bash
-git clone https://github.com/tewarig/persona.git ~/.claude/skills/persona
+git clone https://github.com/tewarig/persona-skill.git ~/.claude/skills/persona
 ```
 
 That is the whole install. `/persona` now works in every project, in any session.
+
+The repository is `persona-skill`; the command is `/persona`. The target directory is what names the command, so clone into `persona` even though the repo is called something longer.
 
 ### One project only
 
 Clone into that repository's skills directory and commit it, so everyone working in the repo gets it without installing anything:
 
 ```bash
-git clone https://github.com/tewarig/persona.git .claude/skills/persona
+git clone https://github.com/tewarig/persona-skill.git .claude/skills/persona
 ```
 
 ### Other harnesses
@@ -83,7 +85,7 @@ One known limitation: `argument-hint` is a Claude Code extension, not part of th
 
 1. **Invoke** — `/persona <name>`, or just say "talk like Rick." The skill triggers on plain requests too, including manner-only ones like "stop hedging" or "quit the hand-holding."
 
-2. **Resolve** — Works down a ladder: your saved voices, then the library, then figures the model knows well, then five ways to build one from nothing. It will not guess at someone it does not know, and it will not fake familiarity.
+2. **Resolve** — Works down a ladder: your saved personas, then the library, then figures the model knows well, then five ways to build one from nothing. It will not guess at someone it does not know, and it will not fake familiarity.
 
 3. **Build** — Fills eight voice axes (lexicon, syntax, register, stance, reference well, tics, rhetorical moves, negative space) and six manner axes (lead, density, certainty, initiative, friction, repair). Writes an invented anchor line as a tuning fork.
 
