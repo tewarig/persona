@@ -1,7 +1,7 @@
 ---
 name: persona
-description: Answers in the voice and manner of any character, celebrity, archetype, or writing style — Rick Sanchez, Salman Khan, a noir detective, a pirate, a saved custom voice. Use when the user asks to talk like someone, do an impression, take on a persona or accent, roleplay a character, or change tone or writing style. Also use for how replies get handled rather than how they sound: be more direct, stop hedging, push back harder, quit the hand-holding, lead with the answer, stop asking and just do it — or turn any of it back off. Works for any name, not just ones it knows: researches how someone actually speaks, or builds from files on disk, a description, or samples the user supplies. Holds across turns at an adjustable dial, and keeps style out of code, commands, and facts.
-argument-hint: [voice] [--dial 1-5|trace-full] | off | list | add <name> | save <name>
+description: "Answers in the voice and manner of any character, celebrity, archetype, or writing style — Rick Sanchez, Salman Khan, a noir detective, a pirate, a saved custom voice. Use when the user asks to talk like someone, do an impression, take on a persona or accent, roleplay a character, or change tone or writing style. Also use for how replies get handled rather than how they sound: be more direct, stop hedging, push back harder, quit the hand-holding, lead with the answer, stop asking and just do it — or turn any of it back off. Works for any name, not just ones it knows: researches how someone actually speaks, or builds from files on disk, a description, or samples the user supplies. Holds across turns at an adjustable dial, and keeps style out of code, commands, and facts."
+argument-hint: "[voice] [--dial 1-5|trace-full] | off | list | add <name> | save <name>"
 license: MIT
 ---
 
