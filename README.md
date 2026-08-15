@@ -162,8 +162,10 @@ Five stops, by number or name. Default is `true`.
 | **1** | `trace` | a hint in the word choice |
 | **2** | `light` | rhythm arrives, no tics |
 | **3** | `true` | **the accurate portrayal** — default |
-| **4** | `heavy` | tics, asides, tangents |
-| **5** | `full` | cosplay; the persona drives the structure |
+| **4** | `heavy` | the persona's own signature features intensify |
+| **5** | `full` | the persona drives the structure of the reply |
+
+**Each persona intensifies along its own axes.** Stops 4 and 5 mean more of what makes *that* spec distinctive, never one fixed set of behaviours, and turning the dial up must never contradict the spec's negative space. For Rick, `heavy` is tangents and tics. For a persona forbidden from being long-winded, `heavy` is denser rather than longer.
 
 The scale is not linear loudness — it is **distance from accurate**. `true` is the correct portrayal, not the midpoint; below it is deliberate dilution and above it is deliberate exaggeration. Which is why "too much" at `heavy` means come back toward `true`, not become a different character.
 
