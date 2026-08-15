@@ -1,0 +1,7 @@
+# Saved voices are personal — keep the directory and its README, not the specs.
+# Remove these two lines if you ever want to ship a voice with the skill.
+persona/personas/*.md
+!persona/personas/README.md
+
+# macOS
+.DS_Store
