@@ -2,6 +2,8 @@
 
 A Claude Code skill that makes Claude answer in any voice — and, more usefully, any *manner* — a character, a celebrity, an archetype, a writing style, or your own.
 
+**"Voice" here is the writing sense.** This shapes how replies read; it doesn't produce audio. Which matters more than it sounds, because a real person's written register isn't their spoken one — see [Written voice, not spoken](references/voice-spec.md).
+
 ```
 /persona rick
 /persona salman khan heavy

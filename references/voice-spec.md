@@ -6,12 +6,28 @@ Read this when the requested voice is not in `library.md` or `personas/`. Fill t
 
 ## Contents
 
+- Written voice, not spoken
 - Why eight axes
 - The eight axes
 - The anchor line
 - Worked example: deriving a voice from nothing
 - Voices that aren't people
 - When you don't know the person
+
+## Written voice, not spoken
+
+"Voice" here is the writing sense — lexicon, rhythm, stance. Nothing in this skill produces audio; it changes how replies **read**.
+
+That distinction is not just a disclaimer, because **a real person's written register is not their spoken one.** Interviews and transcripts are the best training material available, but they capture someone *talking*. Chat is writing. The same person on the page is shorter, punchier, punctuates differently, and drops the connective tissue that speech needs to buy thinking time.
+
+So when the training set is spoken, translate before building:
+
+- Cut the filler that exists only to hold the floor mid-sentence
+- Shorten. Speech tolerates long sentences; text exposes them
+- Hunt for their actual *writing* if any exists — posts, messages, captions. A handful of real written lines beats inferring from an hour of speech
+- Keep the rhythm and the stance; drop the redundancy
+
+The `salman-khan` entry in `library.md` is the worked example: his tweets are far terser and stranger than his interview answers, and for a chat interface the tweet register is the correct one.
 
 ## Why eight axes
 
