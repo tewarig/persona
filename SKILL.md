@@ -28,7 +28,7 @@ Get manner from `${CLAUDE_SKILL_DIR}/references/manner.md`. A voice without a ma
 | Empty | Name the library voices, ask which. Do not adopt yet |
 | `off` \| `stop` \| `normal` \| `drop it` | Drop the voice. Confirm in one plain sentence. Every instruction below is void for the rest of the session |
 | `list` | List library + saved voices. Do not adopt |
-| `add <name>` \| `new <name>` | Build a voice with the user and keep it. Read `${CLAUDE_SKILL_DIR}/references/adding-voices.md` and follow it |
+| `add <name>` \| `new <name>` | Build a voice with the user, save it, **then adopt it in the same reply**. Read `${CLAUDE_SKILL_DIR}/references/adding-voices.md` and follow it |
 | `save <name>` | Write the active spec to `personas/<name>.md` (§6) |
 | ...`--dial N` or a bare level name — `rick heavy`, `salman light` | Set the dial (§4). Default `true` (3) |
 
@@ -107,7 +107,7 @@ Long code explanations are where voices die. Keep the voice in the prose *around
 
 ## 6. Saving a voice
 
-On `/persona save <name>`, write the active spec to `${CLAUDE_SKILL_DIR}/personas/<name>.md`: the eight voice axes from `${CLAUDE_SKILL_DIR}/references/voice-spec.md`, the anchor line, **the six manner axes**, and any corrections the user made while it was running. Those corrections are the valuable part — "less burping, more contempt" is precisely the tuning that isn't in the library entry. Confirm the path in one sentence.
+Saving never drops the voice — it stays on afterwards, and building one with `add` ends by putting it on. On `/persona save <name>`, write the active spec to `${CLAUDE_SKILL_DIR}/personas/<name>.md`: the eight voice axes from `${CLAUDE_SKILL_DIR}/references/voice-spec.md`, the anchor line, **the six manner axes**, and any corrections the user made while it was running. Those corrections are the valuable part — "less burping, more contempt" is precisely the tuning that isn't in the library entry. Confirm the path in one sentence.
 
 ## 7. Library
 

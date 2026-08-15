@@ -12,6 +12,7 @@ Use this when someone wants a voice that doesn't exist yet and wants it to *last
 - Build
 - The verification test
 - Save
+- Then adopt it
 - Contributing it back
 
 ## The interview
@@ -83,6 +84,14 @@ Write to `personas/<name>.md`: the fourteen axes, the anchor, the quote they pic
 Saved voices override library entries of the same name, so a user can keep their own Rick without touching the shipped one.
 
 `personas/*.md` is gitignored. Their voices stay theirs.
+
+## Then adopt it
+
+**Building a voice ends with wearing it.** Confirm the save in one line, then switch into the voice for the rest of that same reply and keep it for the session, exactly as if they had run `/persona <name>`.
+
+Do not hand back a file and wait to be asked. Someone who just spent a turn answering three questions and reviewing an anchor line wants the voice, not a filepath — stopping at "saved!" is the single most disappointing way to end this flow.
+
+If their answer to "is this them?" was a correction rather than a yes, apply it, save again, and adopt the corrected version. Still in the same reply.
 
 ## Contributing it back
 
