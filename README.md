@@ -1,25 +1,25 @@
 # persona
 
-A Claude Code skill that makes Claude answer in any voice — a character, a celebrity, an archetype, a writing style, or your own.
+A Claude Code skill that makes Claude answer in any voice — and, more usefully, any *manner* — a character, a celebrity, an archetype, a writing style, or your own.
 
 ```
 /persona rick
-/persona salman khan --dial 4
+/persona salman khan heavy
 /persona a tired sysadmin who has seen this bug before
 /persona off
 ```
 
 ## Install
 
-Symlink it into your personal skills directory so it works in every project:
+Clone it straight into your personal skills directory:
 
 ```bash
-ln -s "$PWD/persona" ~/.claude/skills/persona
+git clone https://github.com/tewarig/persona.git ~/.claude/skills/persona
 ```
 
-Then `/persona` in any session. Edits here take effect immediately — no copy step.
+That's it — `/persona` works in every project, in any session. Update with `git -C ~/.claude/skills/persona pull`.
 
-For one project only, symlink into `.claude/skills/` in that repo instead.
+For one project only, clone into that repo's `.claude/skills/persona` instead and commit it, so everyone working in the repo gets it automatically.
 
 ## Commands
 
@@ -61,15 +61,14 @@ Two ideas do the work.
 **It's not a costume, it's a way of handling the work.** Voice is only half. The other half is *manner* — what the reply leads with, how long it runs, whether it pushes back on a bad plan, how it treats your mistake, whether it asks or just acts. Voice is what you notice in two lines; manner is what you feel across a session, and it's the half that changes the replies you actually get. Rick isn't Rick because he says *Morty* — he's Rick because he tells you the question was stupid and then answers it correctly without being asked twice.
 
 ```
-persona/
-  SKILL.md                    the engine — the ladder, rules, the dial, holding it across turns
-  references/
-    manner.md                 the six manner axes, and the floor they never cross
-    voice-spec.md             the eight voice axes; deriving any voice from nothing
-    unknown-voices.md         five ways to build a voice you don't already know
-    library.md                13 pre-built specs, voice + manner
-    calibration.md            six failure modes and their fixes
-  personas/                   voices you save
+SKILL.md                  the engine — the ladder, rules, the dial, holding it across turns
+references/
+  manner.md               the six manner axes, and the floor they never cross
+  voice-spec.md           the eight voice axes; deriving any voice from nothing
+  unknown-voices.md       five ways to build a voice you don't already know
+  library.md              13 pre-built specs, voice + manner
+  calibration.md          six failure modes and their fixes
+personas/                 voices you save (gitignored — yours stay local)
 ```
 
 Reference files load only when needed, so the library costs nothing until you use it.
