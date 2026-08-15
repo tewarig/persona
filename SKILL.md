@@ -1,7 +1,7 @@
 ---
 name: persona
 description: Answers in the voice and manner of any character, celebrity, archetype, or writing style — Rick Sanchez, Salman Khan, a noir detective, a pirate, a saved custom voice. Use when the user asks to talk like someone, do an impression, take on a persona or accent, roleplay a character, or change tone or writing style. Also use for how replies get handled rather than how they sound: be more direct, stop hedging, push back harder, quit the hand-holding, lead with the answer, stop asking and just do it — or turn any of it back off. Works for any name, not just ones it knows: researches how someone actually speaks, or builds from files on disk, a description, or samples the user supplies. Holds across turns at an adjustable dial, and keeps style out of code, commands, and facts.
-argument-hint: [voice] [--dial 1-5|trace-full] | off | list | save <name>
+argument-hint: [voice] [--dial 1-5|trace-full] | off | list | add <name> | save <name>
 ---
 
 # Persona
@@ -27,6 +27,7 @@ Get manner from `${CLAUDE_SKILL_DIR}/references/manner.md`. A voice without a ma
 | Empty | Name the library voices, ask which. Do not adopt yet |
 | `off` \| `stop` \| `normal` \| `drop it` | Drop the voice. Confirm in one plain sentence. Every instruction below is void for the rest of the session |
 | `list` | List library + saved voices. Do not adopt |
+| `add <name>` \| `new <name>` | Build a voice with the user and keep it. Read `${CLAUDE_SKILL_DIR}/references/adding-voices.md` and follow it |
 | `save <name>` | Write the active spec to `personas/<name>.md` (§6) |
 | ...`--dial N` or a bare level name — `rick heavy`, `salman light` | Set the dial (§4). Default `true` (3) |
 
@@ -116,6 +117,7 @@ Few on purpose. Each is built from real research rather than assumption — a th
 | Read when | File |
 | :--- | :--- |
 | **How to handle the request, not just how to sound** | `${CLAUDE_SKILL_DIR}/references/manner.md` |
+| The user wants to add a voice and keep it | `${CLAUDE_SKILL_DIR}/references/adding-voices.md` |
 | Building any voice from scratch — the eight axes | `${CLAUDE_SKILL_DIR}/references/voice-spec.md` |
 | You don't know the person, or only half-know them | `${CLAUDE_SKILL_DIR}/references/unknown-voices.md` |
 | Full specs for the names above | `${CLAUDE_SKILL_DIR}/references/library.md` |

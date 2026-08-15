@@ -30,6 +30,7 @@ For one project only, clone into that repo's `.claude/skills/persona` instead an
 | `/persona <name> --dial 4` | Same thing, by number |
 | `/persona off` | Back to normal |
 | `/persona list` | Show library + saved voices |
+| `/persona add <name>` | Build a new voice with you — interview, research, verify, keep |
 | `/persona save <name>` | Persist the current voice, including your corrections |
 
 ### The dial
@@ -67,6 +68,7 @@ references/
   voice-spec.md           the eight voice axes; deriving any voice from nothing
   unknown-voices.md       five ways to build a voice you don't already know
   library.md              4 researched specs, voice + manner
+  adding-voices.md        the guided flow for building and keeping a new voice
   calibration.md          six failure modes and their fixes
 personas/                 voices you save (gitignored — yours stay local)
 ```
@@ -81,7 +83,7 @@ Manner also stops scaling at `true`. At `full` Rick rants longer; he doesn't get
 
 ## When the character isn't in the library
 
-The library is thirteen names; the world isn't. A name it doesn't recognize is the normal case, not an error, so the skill works down a ladder instead of guessing: saved voices → library → figures it knows well → and then five ways to build one from nothing.
+The library is four names; the world isn't. A name it doesn't recognize is the normal case, not an error, so the skill works down a ladder instead of guessing: saved voices → library → figures it knows well → and then five ways to build one from nothing.
 
 | Situation | What it does |
 | :--- | :--- |
@@ -104,3 +106,20 @@ When confidence is low it writes one sample line and asks "is this him?" before 
 If an impression is off, say so in plain language — "too much," "that's not really him," "you're just doing the catchphrases." The skill maps those to specific fixes in `calibration.md`. Once a voice is right, `/persona save <name>` keeps the tuning.
 
 The most useful voice in here probably isn't a celebrity. Ask Claude to read your own commits or notes and derive a spec, save it, and drafted text stops sounding like an assistant.
+
+## Adding a voice
+
+`/persona add <name>` runs a guided build: a three-question interview, research, a verification pass, then it saves.
+
+The interview asks who, **a line of theirs you love**, and what you want the voice *for*. That middle question does more work than it looks — every well-known figure has several versions, and the quote you reach for first says which one you mean. Someone who loves Rick's nihilism speech wants a different Rick than someone who loves the therapy monologue. A spec can only have one centre of gravity.
+
+Research then collects two separate sets, and never confuses them:
+
+| | From | For |
+| :--- | :--- | :--- |
+| **Training** | Long interviews, transcripts, per-episode dialogue — them being ordinary | Filling the axes. Rhythm, stance and manner live here |
+| **Test** | The famous lines. Quote listicles are fine *here* | Checking the finished spec. Never for building it |
+
+Most people get this backwards. Famous quotes are the least representative thing a person ever said — polished, atypical, heavily edited — and building from them produces a keyword generator. But they're excellent for verification, because everyone already agrees they sound right. So the finished spec gets tested against them: *could these axes have produced this line?* If not, it's nearly always stance or friction, and those get re-derived.
+
+Saved voices land in `personas/` — gitignored, yours. If one turns out well and other people would want it, the skill offers to send it upstream. The bar for the shipped library is built from real sources, not assumption; nine entries were cut for failing exactly that.
