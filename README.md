@@ -19,6 +19,10 @@ Three words, used precisely throughout:
 /persona off
 ```
 
+![A Claude Code session running the salman-khan persona at the heavy dial. The reply is in Hinglish and reports on documentation work: install prerequisites, a verify step, an uninstall warning, a terminology sweep and anchor counts. It closes with the sign-off "It's done bro."](screenshots/salman-khan-heavy.jpg)
+
+<sub>`salman-khan` at `heavy`, reporting on work done to this repository. The Hinglish is the voice. The anchor counts, the line counts, the terminology sweep are the substance — and the whole design exists so the second survives the first.</sub>
+
 ## Table of Contents
 
 - [How it works](#how-it-works)
