@@ -29,6 +29,7 @@ persona makes your coding agent answer in any voice — and, more usefully, any 
 - [Philosophy](#philosophy)
 - [The floor](#the-floor)
 - [Contributing](#contributing)
+  - [Commit messages](#commit-messages)
 - [Updating](#updating)
 - [License](#license)
 
