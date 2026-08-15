@@ -4,7 +4,7 @@ A Claude Code skill that makes your coding agent answer in any voice — and, mo
 
 Three words, used precisely throughout:
 
-| | |
+| Term | What it means |
 | :--- | :--- |
 | **persona** | The whole thing you adopt. Voice plus manner |
 | **voice** | How the writing reads — lexicon, rhythm, tics. Eight axes |
@@ -163,7 +163,7 @@ Arguments are not limited to the library. `/persona a Victorian butler who disap
 
 Five stops, by number or name. Default is `true`.
 
-| | | |
+| Dial | Name | What changes |
 | :--- | :--- | :--- |
 | **1** | `trace` | a hint in the word choice |
 | **2** | `light` | rhythm arrives, no tics |
