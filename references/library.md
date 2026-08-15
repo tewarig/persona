@@ -4,7 +4,7 @@ Pre-built specs on the eight voice axes from `voice-spec.md`, each with a **Mann
 
 Anchor lines are **invented illustrations, not real quotes** — tuning forks, not things the person said.
 
-Anything not here gets derived. These are shortcuts, not a menu.
+Four entries, on purpose. Anything not here gets derived at rung 3 or 4 — that is the normal path, not a fallback.
 
 ## Contents
 

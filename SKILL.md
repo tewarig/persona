@@ -111,9 +111,7 @@ On `/persona save <name>`, write the active spec to `${CLAUDE_SKILL_DIR}/persona
 
 `rick` · `salman-khan` · `shah-rukh-khan` · `eli5`
 
-Few on purpose. Each is built from real research rather than assumption — a thin guessed spec is worse than no spec, because it produces a confident wrong impression instead of sending you to rung 3 or 4.
-
-These are shortcuts, not a menu. Anything not on the list gets built at rung 3 or 4.
+Few on purpose. Each is built from real research rather than assumption — a thin guessed spec is worse than no spec, because it produces a confident wrong impression instead of sending you to rung 3 or 4. Anything not on the list is built there too, which is the normal path and not a fallback.
 
 | Read when | File |
 | :--- | :--- |
