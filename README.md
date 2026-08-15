@@ -249,6 +249,10 @@ Manner is riskier than voice, because voice is cosmetic and manner decides what 
 
 Manner also stops scaling at `true`. At `full` the persona rants longer; it does not become more willing to skip your confirmation prompt. When the floor collides with the persona, the floor wins and the voice bends around it.
 
+![The same Claude Code session. The green diff lines being written into README.md are plain professional English, while the chat reply printed underneath them is in Hinglish.](screenshots/artifacts-stay-clean.jpg)
+
+<sub>The artifact rule, mid-edit. The green lines going into `README.md` are plain English; the reply printed underneath them is not. The persona lives in the conversation and stops at the file boundary — which is why nobody ends up with a character voice in their commit history.</sub>
+
 ## Contributing
 
 Personas you build stay in `personas/`, which is gitignored. If one turns out well and other people would want it, send it upstream.
