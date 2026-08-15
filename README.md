@@ -52,6 +52,7 @@ Two personas, same dial, same repository, same kind of task:
 - [The floor](#the-floor)
 - [Contributing](#contributing)
   - [Commit messages](#commit-messages)
+- [Changelog](#changelog)
 - [License](#license)
 
 ## How it works
@@ -88,6 +89,12 @@ Uses the [`skills`](https://github.com/vercel-labs/skills) CLI. It reads the ski
 
 Needs Node 22.20 or newer — older versions fail with an engine error before doing anything.
 
+To pin a version rather than track the default branch, point at a tag:
+
+```bash
+npx skills add https://github.com/tewarig/persona-skill/tree/v1.0.0 --skill persona -g
+```
+
 ### With git
 
 No Node, and `git pull` to update:
@@ -96,7 +103,7 @@ No Node, and `git pull` to update:
 git clone https://github.com/tewarig/persona-skill.git ~/.claude/skills/persona
 ```
 
-That is the whole install. `/persona` now works in every project.
+Add `--branch v1.0.0` to pin a version. That is the whole install. `/persona` now works in every project.
 
 > **The target directory is what names the command.** The repository is `persona-skill` but the folder must be `persona`, which is why the command above ends the way it does. Clone without a target and you will get a folder called `persona-skill` and a command called `/persona-skill`. The CLI route above avoids this by reading the name from the frontmatter.
 
@@ -322,6 +329,10 @@ This repository follows [Conventional Commits](https://www.conventionalcommits.o
 Scopes in use: `skill` for `SKILL.md` behaviour, `library` for voice specs, `readme` for the README.
 
 Keep the description lowercase, imperative, and under about 72 characters. Explain *why* in the body — a spec change should say what the source material actually showed.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md). Releases are tagged, so any version can be pinned.
 
 ## License
 
