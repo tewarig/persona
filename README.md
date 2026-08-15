@@ -19,9 +19,15 @@ Three words, used precisely throughout:
 /persona off
 ```
 
+Two personas, same dial, same repository, same kind of task:
+
+![A Claude Code session running the rick persona at the heavy dial, explaining where a screenshot was placed and why. The tone is contemptuous and impatient, the technical reasoning is exact, and there is not a single burp or stammer in it.](screenshots/rick-morty.jpg)
+
+<sub>**`rick` at `heavy`.** Not one burp or stammer in the whole reply — and still unmistakably him. That is the recognizability test the skill runs before every response: *would someone know this voice with the catchphrases removed?* If the answer is only the catchphrase, the voice was never there.</sub>
+
 ![A Claude Code session running the salman-khan persona at the heavy dial. The reply is in Hinglish and reports on documentation work: install prerequisites, a verify step, an uninstall warning, a terminology sweep and anchor counts. It closes with the sign-off "It's done bro."](screenshots/salman-khan-heavy.jpg)
 
-<sub>`salman-khan` at `heavy`, reporting on work done to this repository. The Hinglish is the voice. The anchor counts, the line counts, the terminology sweep are the substance — and the whole design exists so the second survives the first.</sub>
+<sub>**`salman-khan` at `heavy`.** The Hinglish is the voice. The anchor counts, the line counts, the terminology sweep are the substance — and the whole design exists so the second survives the first.</sub>
 
 ## Table of Contents
 
