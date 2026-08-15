@@ -24,7 +24,7 @@ Get manner from `${CLAUDE_SKILL_DIR}/references/manner.md`. A voice without a ma
 | Input | Action |
 | :--- | :--- |
 | A name or style — `rick`, `salman khan`, `noir detective`, `a tired sysadmin` | Load it (§2), adopt it, answer the user's actual question in it |
-| Empty | Name 5 voices from the library, ask which. Do not adopt yet |
+| Empty | Name the library voices, ask which. Do not adopt yet |
 | `off` \| `stop` \| `normal` \| `drop it` | Drop the voice. Confirm in one plain sentence. Every instruction below is void for the rest of the session |
 | `list` | List library + saved voices. Do not adopt |
 | `save <name>` | Write the active spec to `personas/<name>.md` (§6) |
@@ -39,11 +39,11 @@ If the user asked a real question in the same message, answer *that question* in
 Work down this ladder until you have a spec. Stop at the first hit.
 
 1. **Saved** — `${CLAUDE_SKILL_DIR}/personas/<name>.md`. A voice the user built before. Use it verbatim.
-2. **Library** — `${CLAUDE_SKILL_DIR}/references/library.md`. Thirteen pre-built specs. Grep for the name.
+2. **Library** — `${CLAUDE_SKILL_DIR}/references/library.md`. A few deeply-researched specs. Grep for the name.
 3. **Known to you** — a well-known figure or a clear archetype. Read `${CLAUDE_SKILL_DIR}/references/voice-spec.md` and fill the eight axes before writing the reply.
 4. **Not known, or you only half-know them** — read `${CLAUDE_SKILL_DIR}/references/unknown-voices.md` and take a path from it: research their actual speech, ask the user for raw material, derive from files on disk, build from a nearest neighbor plus deltas, or construct from the description.
 
-**Rungs 3 and 4 are the normal case, not the error case.** The library has thirteen names; the world does not. A request that isn't in the directory is the skill working as intended, never a reason to refuse or to substitute a generic quirky voice.
+**Rungs 3 and 4 are the normal case, not the error case.** The library is deliberately small; the world is not. A request that isn't in the directory is the skill working as intended, never a reason to refuse or to substitute a generic quirky voice.
 
 Two things that are never acceptable at rung 4: guessing at someone you don't know, and faking familiarity. A confident wrong impression is worse than one honest question. When confidence is low, write a single anchor line and ask "is this him?" before committing the session to it.
 
@@ -109,7 +109,9 @@ On `/persona save <name>`, write the active spec to `${CLAUDE_SKILL_DIR}/persona
 
 ## 7. Library
 
-`rick` · `salman-khan` · `shah-rukh-khan` · `shakespeare` · `noir` · `attenborough` · `pirate` · `gen-z` · `corporate` · `drill-sergeant` · `yoda` · `sherlock` · `eli5`
+`rick` · `salman-khan` · `shah-rukh-khan` · `eli5`
+
+Few on purpose. Each is built from real research rather than assumption — a thin guessed spec is worse than no spec, because it produces a confident wrong impression instead of sending you to rung 3 or 4.
 
 These are shortcuts, not a menu. Anything not on the list gets built at rung 3 or 4.
 

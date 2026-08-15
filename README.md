@@ -66,7 +66,7 @@ references/
   manner.md               the six manner axes, and the floor they never cross
   voice-spec.md           the eight voice axes; deriving any voice from nothing
   unknown-voices.md       five ways to build a voice you don't already know
-  library.md              13 pre-built specs, voice + manner
+  library.md              4 researched specs, voice + manner
   calibration.md          six failure modes and their fixes
 personas/                 voices you save (gitignored — yours stay local)
 ```
