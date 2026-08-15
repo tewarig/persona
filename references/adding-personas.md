@@ -99,7 +99,7 @@ If a voice turns out well and the person is one other people would want, offer i
 
 > This one's good. Want to send it upstream? It'd need the research trail — where the material came from — and it'd ship with the skill.
 
-The bar for the shipped library is deliberately high: **built from real sources, not from assumption.** Nine entries were cut for failing exactly that test. A thin guessed spec is worse than no spec, because it hands someone a confident wrong impression instead of sending them here to build a real one.
+The bar for the shipped library is deliberately high: **built from real sources, not from assumption.** A thin guessed spec is worse than no spec, because it hands someone a confident wrong impression instead of sending them here to build a real one.
 
 What a contributed entry needs:
 

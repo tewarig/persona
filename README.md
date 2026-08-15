@@ -140,7 +140,7 @@ Four entries, on purpose. Each is built from real source material with a documen
 - **shah-rukh-khan** — Makes you feel the idea before you understand it. Sourced from TED and Yale
 - **eli5** — Analogy, then the real term. A functional style rather than a person
 
-Nine further entries were cut for being written from assumption. A thin guessed spec is worse than no spec, because it hands you a confident wrong impression instead of routing to a real build.
+Kept deliberately small. A thin guessed spec is worse than no spec, because it hands you a confident wrong impression instead of routing to a real build.
 
 ### Reference files
 
@@ -226,7 +226,7 @@ What a contributed entry needs:
 - Any genuine quotes kept separate and marked as genuine, with a source
 - For real people: parody as the register, no fabricated statements
 
-The bar is **built from real sources, not assumption**. Nine entries were cut for failing exactly that.
+The bar is **built from real sources, not assumption**.
 
 ### Commit messages
 
