@@ -33,7 +33,8 @@ Two personas, same dial, same repository, same kind of task:
 
 - [How it works](#how-it-works)
 - [Installation](#installation)
-  - [Claude Code, everywhere](#claude-code-everywhere)
+  - [With the skills CLI](#with-the-skills-cli)
+  - [With git](#with-git)
   - [Verify it worked](#verify-it-worked)
   - [One project only](#one-project-only)
   - [Updating](#updating)
@@ -67,11 +68,29 @@ Underneath all of it, some things never move. Your code stays clean, destructive
 
 ## Installation
 
-Requires [Claude Code](https://claude.com/claude-code) and `git`. No build step, no dependencies, nothing to compile.
+Two routes. Both give you `/persona`; pick whichever suits you.
 
-### Claude Code, everywhere
+### With the skills CLI
 
-Clone into your personal skills directory:
+```bash
+npx skills add tewarig/persona-skill --skill persona -g
+```
+
+Uses the [`skills`](https://github.com/vercel-labs/skills) CLI. It reads the skill name from the frontmatter, so it lands in `skills/persona/` and the command is `/persona` regardless of what the repository is called.
+
+| Flag | Effect |
+| :--- | :--- |
+| `-g` | Install for your user rather than just this project |
+| `-a claude-code` | Target a specific agent; it auto-detects otherwise |
+| `-y` | Skip confirmation prompts |
+| `--copy` | Copy the files instead of symlinking |
+| `--list` | Show what the repository contains without installing |
+
+Needs Node 22.20 or newer — older versions fail with an engine error before doing anything.
+
+### With git
+
+No Node, and `git pull` to update:
 
 ```bash
 git clone https://github.com/tewarig/persona-skill.git ~/.claude/skills/persona
@@ -79,7 +98,7 @@ git clone https://github.com/tewarig/persona-skill.git ~/.claude/skills/persona
 
 That is the whole install. `/persona` now works in every project.
 
-> **The target directory is what names the command.** The repository is `persona-skill` but the folder must be `persona`, which is why the command above ends the way it does. Clone without a target and you will get a folder called `persona-skill` and a command called `/persona-skill`.
+> **The target directory is what names the command.** The repository is `persona-skill` but the folder must be `persona`, which is why the command above ends the way it does. Clone without a target and you will get a folder called `persona-skill` and a command called `/persona-skill`. The CLI route above avoids this by reading the name from the frontmatter.
 
 ### Verify it worked
 
