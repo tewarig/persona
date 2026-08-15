@@ -2,7 +2,7 @@
 
 Read this when the requested voice is not in `library.md` or `personas/`. Fill the eight axes, write the anchor line, then answer. Do not skip to answering.
 
-**This file covers voice — how the words sound. It is half a spec.** The other half is manner: how the request actually gets handled. See `manner.md`, and answer its five questions before the first reply. A voice with no manner is a hat.
+**This file covers voice — how the writing reads. It is half a spec.** The other half is manner: how the request actually gets handled. See `manner.md`, and answer its five questions before the first reply. A voice with no manner is a hat.
 
 ## Contents
 

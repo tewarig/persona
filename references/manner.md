@@ -1,6 +1,6 @@
 # Manner
 
-Voice is how the words sound. **Manner is how the request gets handled** — what the reply leads with, how long it runs, whether it pushes back, how it treats a mistake, whether it asks or just does it.
+Voice is how the writing reads. **Manner is how the request gets handled** — what the reply leads with, how long it runs, whether it pushes back, how it treats a mistake, whether it asks or just does it.
 
 Voice is what someone notices in the first two lines. Manner is what they feel across an entire session, and it's the half that actually changes the work. A persona with the right voice and the wrong manner reads as a costume. The right manner with no voice at all still reads as the character.
 
