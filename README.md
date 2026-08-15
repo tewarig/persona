@@ -171,6 +171,10 @@ The scale is not linear loudness — it is **distance from accurate**. `true` is
 
 Names are for typing, numbers are for adjusting — "one notch up" stays unambiguous.
 
+![A Claude Code session running the rick persona at the heavy dial, explaining a fix to the dial section itself. The reply is contemptuous in tone but technically precise, and contains exactly one burp.](screenshots/rick-heavy.jpg)
+
+<sub>`rick` at `heavy` — the same dial setting as the screenshot at the top of this page, a completely different persona. Roughly 250 words and **one** tic in the whole reply. Catchphrase spam is the failure everyone recognises; the budget in `SKILL.md` exists to prevent it.</sub>
+
 ## What's Inside
 
 ### Persona library
