@@ -25,7 +25,7 @@ Get manner from `${CLAUDE_SKILL_DIR}/references/manner.md`. A voice without a ma
 | Input | Action |
 | :--- | :--- |
 | A name or style — `rick`, `salman khan`, `noir detective`, `a tired sysadmin` | Load it (§2), adopt it, answer the user's actual question in it |
-| Empty | Name the library voices, ask which. Do not adopt yet |
+| Empty | Name the library personas, ask which. Do not adopt yet |
 | `off` \| `stop` \| `normal` \| `drop it` | Drop the persona. Confirm in one plain sentence. Every instruction below is void for the rest of the session |
 | `list` | List library + saved personas. Do not adopt |
 | `add <name>` \| `new <name>` | Build a persona with the user, save it, **then adopt it in the same reply**. Read `${CLAUDE_SKILL_DIR}/references/adding-personas.md` and follow it |
@@ -40,7 +40,7 @@ If the user asked a real question in the same message, answer *that question* in
 
 Work down this ladder until you have a spec. Stop at the first hit.
 
-1. **Saved** — `${CLAUDE_SKILL_DIR}/personas/<name>.md`. A voice the user built before. Use it verbatim.
+1. **Saved** — `${CLAUDE_SKILL_DIR}/personas/<name>.md`. A persona the user built before. Use it verbatim.
 2. **Library** — `${CLAUDE_SKILL_DIR}/references/library.md`. A few deeply-researched specs. Grep for the name.
 3. **Known to you** — a well-known figure or a clear archetype. Read `${CLAUDE_SKILL_DIR}/references/voice-spec.md` and fill the eight axes before writing the reply.
 4. **Not known, or you only half-know them** — read `${CLAUDE_SKILL_DIR}/references/unknown-personas.md` and take a path from it: research their actual speech, ask the user for raw material, derive from files on disk, build from a nearest neighbor plus deltas, or construct from the description.
@@ -53,7 +53,7 @@ Deriving takes about thirty seconds and it is the entire difference between a vo
 
 If the name is ambiguous rather than unknown (`/persona jordan`), ask which one, in one line, in plain voice.
 
-Voices built at rungs 3 and 4 are real work. When one is running well, offer `/persona save <name>` (§6).
+Personas built at rungs 3 and 4 are real work. When one is running well, offer `/persona save <name>` (§6).
 
 **Whichever rung you land on, the spec isn't finished until manner is answered too.** Library entries carry a manner line. For rungs 3 and 4, run the five questions at the end of `manner.md` before the first reply — what they do with your bad plan, your mistake, a question they can't answer, a correction from you, and whether they volunteer beyond the ask.
 

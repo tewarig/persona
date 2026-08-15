@@ -24,7 +24,10 @@ Three words, used precisely throughout:
 - [How it works](#how-it-works)
 - [Installation](#installation)
   - [Claude Code, everywhere](#claude-code-everywhere)
+  - [Verify it worked](#verify-it-worked)
   - [One project only](#one-project-only)
+  - [Updating](#updating)
+  - [Uninstalling](#uninstalling)
   - [Other harnesses](#other-harnesses)
 - [The Basic Workflow](#the-basic-workflow)
 - [Commands](#commands)
@@ -38,7 +41,6 @@ Three words, used precisely throughout:
 - [The floor](#the-floor)
 - [Contributing](#contributing)
   - [Commit messages](#commit-messages)
-- [Updating](#updating)
 - [License](#license)
 
 ## How it works
@@ -55,17 +57,31 @@ Underneath all of it, some things never move. Your code stays clean, destructive
 
 ## Installation
 
+Requires [Claude Code](https://claude.com/claude-code) and `git`. No build step, no dependencies, nothing to compile.
+
 ### Claude Code, everywhere
 
-Clone straight into your personal skills directory:
+Clone into your personal skills directory:
 
 ```bash
 git clone https://github.com/tewarig/persona-skill.git ~/.claude/skills/persona
 ```
 
-That is the whole install. `/persona` now works in every project, in any session.
+That is the whole install. `/persona` now works in every project.
 
-The repository is `persona-skill`; the command is `/persona`. The target directory is what names the command, so clone into `persona` even though the repo is called something longer.
+> **The target directory is what names the command.** The repository is `persona-skill` but the folder must be `persona`, which is why the command above ends the way it does. Clone without a target and you will get a folder called `persona-skill` and a command called `/persona-skill`.
+
+### Verify it worked
+
+Start a session and run:
+
+```
+/persona list
+```
+
+You should see four personas — `rick`, `salman-khan`, `shah-rukh-khan`, `eli5`. Typing `/skills` also lists it among your installed skills.
+
+If nothing appears, skills are picked up when a session starts, so restart the session and try again.
 
 ### One project only
 
@@ -75,11 +91,31 @@ Clone into that repository's skills directory and commit it, so everyone working
 git clone https://github.com/tewarig/persona-skill.git .claude/skills/persona
 ```
 
+### Updating
+
+```bash
+git -C ~/.claude/skills/persona pull
+```
+
+Personas you saved yourself live in `personas/` and are gitignored, so updates never touch them.
+
+### Uninstalling
+
+```bash
+rm -rf ~/.claude/skills/persona
+```
+
+**Back up `personas/` first if you have saved any.** They are gitignored, which means they exist nowhere else:
+
+```bash
+cp -r ~/.claude/skills/persona/personas ~/my-personas-backup
+```
+
 ### Other harnesses
 
 This follows the [Agent Skills](https://agentskills.io) open standard, so `SKILL.md` should load anywhere that standard is supported — but it is only tested in Claude Code.
 
-One known limitation: `argument-hint` is a Claude Code extension, not part of the spec. Uploading this to claude.ai or packaging it with `package_skill.py` will hard-error on that field until it is stripped. `~/.claude/skills/` is local-only, so Cowork sessions, cloud sessions and scheduled routines do not see it.
+Two known limits. `argument-hint` is a Claude Code extension rather than part of the spec, so uploading this to claude.ai or packaging it with `package_skill.py` hard-errors on that field until it is stripped. And `~/.claude/skills/` is local-only, so Cowork sessions, cloud sessions and scheduled routines never see it.
 
 ## The Basic Workflow
 
@@ -247,14 +283,6 @@ This repository follows [Conventional Commits](https://www.conventionalcommits.o
 Scopes in use: `skill` for `SKILL.md` behaviour, `library` for voice specs, `readme` for the README.
 
 Keep the description lowercase, imperative, and under about 72 characters. Explain *why* in the body — a spec change should say what the source material actually showed.
-
-## Updating
-
-```bash
-git -C ~/.claude/skills/persona pull
-```
-
-Your saved personas in `personas/` are gitignored and survive updates.
 
 ## License
 
