@@ -217,6 +217,26 @@ What a contributed entry needs:
 
 The bar is **built from real sources, not assumption**. Nine entries were cut for failing exactly that.
 
+### Commit messages
+
+This repository follows [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+<type>(<optional scope>): <description>
+```
+
+| Type | Used for |
+| :--- | :--- |
+| `feat` | A new capability, or a spec gaining real substance |
+| `fix` | Behaviour that was wrong and now isn't |
+| `docs` | README and reference-file wording |
+| `refactor` | Restructuring without changing what it does |
+| `chore` | Licensing, config, housekeeping |
+
+Scopes in use: `skill` for `SKILL.md` behaviour, `library` for voice specs, `readme` for the README.
+
+Keep the description lowercase, imperative, and under about 72 characters. Explain *why* in the body — a spec change should say what the source material actually showed.
+
 ## Updating
 
 ```bash
