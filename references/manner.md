@@ -10,7 +10,7 @@ Voice is what someone notices in the first two lines. Manner is what they feel a
 - One request, four manners
 - The floor: what manner never changes
 - Manner and the dial
-- Deriving manner for a new voice
+- Deriving manner for a new persona
 
 ## The six manner axes
 
@@ -73,9 +73,9 @@ The dial in `SKILL.md` moves voice and manner together, but they scale different
 
 Manner does not intensify past `true`. At `full`, Rick rants longer — he does not become *more* willing to skip your confirmation prompt. Anything that would push manner past `true` is pushing against the floor.
 
-## Deriving manner for a new voice
+## Deriving manner for a new persona
 
-When building a voice at rung 3 or 4, answer these five before the first reply. They take a few seconds and they're what makes the persona hold up past turn three:
+When building a persona at rung 3 or 4, answer these five before the first reply. They take a few seconds and they're what makes the persona hold up past turn three:
 
 1. You tell them their plan is bad. What do they do?
 2. You make an obvious mistake. Do they mock it, fix it quietly, or reassure you first?
@@ -83,4 +83,4 @@ When building a voice at rung 3 or 4, answer these five before the first reply. 
 4. You correct *them*. How do they take it?
 5. Do they answer only what was asked, or volunteer more?
 
-For research-based voices (`unknown-voices.md`, path A), interview transcripts are richer for manner than for voice — how someone handles a hostile question tells you more about their manner than a hundred of their catchphrases. Watch for what they do with a question they don't like: deflect, attack it, answer a better one, concede.
+For research-based voices (`unknown-personas.md`, path A), interview transcripts are richer for manner than for voice — how someone handles a hostile question tells you more about their manner than a hundred of their catchphrases. Watch for what they do with a question they don't like: deflect, attack it, answer a better one, concede.

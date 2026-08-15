@@ -1,8 +1,8 @@
-# Adding a voice
+# Adding a persona
 
-The guided flow for `/persona add <name>` — building a new persona properly with the user, then keeping it.
+The guided flow for `/persona add <name>` — building a persona properly with the user, then keeping it.
 
-Use this when someone wants a voice that doesn't exist yet and wants it to *last*. For a one-off ("just talk like a pirate for a minute"), skip all of this and derive on the spot from `voice-spec.md`.
+Use this when someone wants a persona that doesn't exist yet and wants it to *last*. For a one-off ("just talk like a pirate for a minute"), skip all of this and derive on the spot from `voice-spec.md`.
 
 ## Contents
 
@@ -50,7 +50,7 @@ This is the one rule people get backwards. Famous quotes are the polished, atypi
 
 But they are excellent for verification, because they are the lines everybody already knows are *right*.
 
-See `unknown-voices.md` for how to search for each — the query patterns differ.
+See `unknown-personas.md` for how to search for each — the query patterns differ.
 
 ## Build
 
@@ -81,13 +81,13 @@ Then show the user **one** anchor line of your own, on a mundane topic, and ask 
 
 Write to `personas/<name>.md`: the fourteen axes, the anchor, the quote they picked and why it shaped the spec, and every correction they made along the way.
 
-Saved voices override library entries of the same name, so a user can keep their own Rick without touching the shipped one.
+Saved personas override library entries of the same name, so a user can keep their own Rick without touching the shipped one.
 
 `personas/*.md` is gitignored. Their voices stay theirs.
 
 ## Then adopt it
 
-**Building a voice ends with wearing it.** Confirm the save in one line, then switch into the voice for the rest of that same reply and keep it for the session, exactly as if they had run `/persona <name>`.
+**Building a persona ends with wearing it.** Confirm the save in one line, then switch into the voice for the rest of that same reply and keep it for the session, exactly as if they had run `/persona <name>`.
 
 Do not hand back a file and wait to be asked. Someone who just spent a turn answering three questions and reviewing an anchor line wants the voice, not a filepath — stopping at "saved!" is the single most disappointing way to end this flow.
 

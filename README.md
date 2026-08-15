@@ -2,7 +2,15 @@
 
 persona makes your coding agent answer in any voice — and, more usefully, any *manner* — a character, a celebrity, an archetype, a writing style, or your own. It is one skill, a handful of reference files, and a small library of specs built from real source material rather than guesswork.
 
-**"Voice" here is the writing sense.** This shapes how replies read; it does not produce audio. That distinction matters more than it looks, because a real person's written register is not their spoken one.
+Three words, used precisely throughout:
+
+| | |
+| :--- | :--- |
+| **persona** | The whole thing you adopt. Voice plus manner |
+| **voice** | How the writing reads — lexicon, rhythm, tics. Eight axes |
+| **manner** | How the request gets handled — what it leads with, whether it pushes back. Six axes |
+
+"Voice" is the writing sense of the word. Nothing here produces audio, and that matters more than it looks, because a real person's written register is not their spoken one.
 
 ```
 /persona rick
@@ -22,10 +30,10 @@ persona makes your coding agent answer in any voice — and, more usefully, any 
 - [Commands](#commands)
   - [The dial](#the-dial)
 - [What's Inside](#whats-inside)
-  - [Voice library](#voice-library)
+  - [Persona library](#persona-library)
   - [Reference files](#reference-files)
-- [When the voice isn't in the library](#when-the-voice-isnt-in-the-library)
-- [Adding a voice](#adding-a-voice)
+- [When the persona isn't in the library](#when-the-persona-isnt-in-the-library)
+- [Adding a persona](#adding-a-persona)
 - [Philosophy](#philosophy)
 - [The floor](#the-floor)
 - [Contributing](#contributing)
@@ -37,7 +45,7 @@ persona makes your coding agent answer in any voice — and, more usefully, any 
 
 You name a voice. Anything — a character, a public figure, your own writing, or a description invented on the spot. The skill does not start talking immediately.
 
-First it resolves the voice. If you have saved one before, that wins. Otherwise it checks a deliberately small library of researched specs, and if the name is not there — which is the normal case, not an error — it builds one. For someone with a public record that means researching how they *actually* speak, which is not the same as collecting their famous quotes. For a private person it means asking you for a few unedited lines rather than inventing them. For an invented character it means constructing from your description, stance first.
+First it resolves the persona. If you have saved one before, that wins. Otherwise it checks a deliberately small library of researched specs, and if the name is not there — which is the normal case, not an error — it builds one. For someone with a public record that means researching how they *actually* speak, which is not the same as collecting their famous quotes. For a private person it means asking you for a few unedited lines rather than inventing them. For an invented character it means constructing from your description, stance first.
 
 Then it fills the axes. Fourteen of them: eight for voice, six for manner. This is the part that separates a working voice from a bad impression, because a spec built this way keeps functioning on topics the character never touched — which, in a coding session, is every topic.
 
@@ -81,11 +89,11 @@ One known limitation: `argument-hint` is a Claude Code extension, not part of th
 
 4. **Verify** — For a newly built voice, checks the spec against known lines: *could these axes have produced this?* A failure points at stance or friction almost every time. Then shows you one sample line and asks whether it landed.
 
-5. **Adopt** — Answers your actual question in the voice, at your chosen intensity, and holds it across turns. Technical work is not an exception; the voice survives debugging and git operations.
+5. **Adopt** — Answers your actual question in the persona, at your chosen intensity, and holds it across turns. Technical work is not an exception; it survives debugging and git operations.
 
 6. **Tune** — Plain-language corrections map to specific axes. "Too much" moves the dial. "That's not really him" re-derives stance. "Stop agreeing with everything" raises friction.
 
-7. **Save** — `/persona save <name>` persists the spec *and your corrections*, which are the part no library entry can predict. Saved voices override library entries of the same name.
+7. **Save** — `/persona save <name>` persists the spec *and your corrections*, which are the part no library entry can predict. Saved personas override library entries of the same name.
 
 **The floor holds at every step.** Style never reaches your code, and manner never overrides a confirmation.
 
@@ -93,13 +101,13 @@ One known limitation: `argument-hint` is a Claude Code extension, not part of th
 
 | Command | Effect |
 | :--- | :--- |
-| `/persona <name>` | Adopt a voice, hold it for the session |
+| `/persona <name>` | Adopt a persona, hold it for the session |
 | `/persona <name> heavy` | Set the dial by name |
 | `/persona <name> --dial 4` | Same thing, by number |
 | `/persona off` | Back to normal |
-| `/persona list` | Show library plus saved voices |
-| `/persona add <name>` | Build a new voice with you — interview, research, verify, save, then wear it |
-| `/persona save <name>` | Persist the current voice, including your corrections |
+| `/persona list` | Show library plus saved personas |
+| `/persona add <name>` | Build a new persona with you — interview, research, verify, save, then wear it |
+| `/persona save <name>` | Persist the current persona, including your corrections |
 
 Arguments are not limited to the library. `/persona a Victorian butler who disapproves of your architecture` works; the skill derives a spec for it.
 
@@ -121,7 +129,7 @@ Names are for typing, numbers are for adjusting — "one notch up" stays unambig
 
 ## What's Inside
 
-### Voice library
+### Persona library
 
 Four entries, on purpose. Each is built from real source material with a documented training and test set.
 
@@ -139,16 +147,16 @@ SKILL.md                  the engine — the ladder, rules, the dial, holding it
 references/
   manner.md               the six manner axes, and the floor they never cross
   voice-spec.md           the eight voice axes; deriving any voice from nothing
-  unknown-voices.md       five ways to build a voice you don't already know
-  adding-voices.md        the guided flow for building and keeping a new voice
+  unknown-personas.md     five ways to build a persona you don't already know
+  adding-personas.md      the guided flow for building and keeping a new persona
   library.md              the four researched specs, voice + manner
   calibration.md          six failure modes and their fixes
-personas/                 voices you save (gitignored — yours stay local)
+personas/                 personas you save (gitignored — yours stay local)
 ```
 
 Reference files load only when needed, so the library costs nothing in context until it is used.
 
-## When the voice isn't in the library
+## When the persona isn't in the library
 
 The library is four names; the world is not. An unrecognised name is the normal path, not a fallback.
 
@@ -162,11 +170,11 @@ The library is four names; the world is not. An unrecognised name is the normal 
 
 When confidence is low it writes one sample line and asks before committing a session to a wrong voice.
 
-## Adding a voice
+## Adding a persona
 
-`/persona add <name>` runs a guided build: a three-question interview, research, a verification pass, a save — and then it puts the voice on in the same reply. Building a voice ends with wearing it.
+`/persona add <name>` runs a guided build: a three-question interview, research, a verification pass, a save — and then it puts the persona on in the same reply. Building a persona ends with wearing it.
 
-The interview asks who, **a line of theirs you love**, and what you want the voice *for*. The middle question does the most work. Every well-known figure has several versions, and the quote you reach for first says which one you mean — someone who loves Rick's nihilism speech wants a different Rick than someone who loves the therapy monologue. A spec can only have one centre of gravity.
+The interview asks who, **a line of theirs you love**, and what you want the persona *for*. The middle question does the most work. Every well-known figure has several versions, and the quote you reach for first says which one you mean — someone who loves Rick's nihilism speech wants a different Rick than someone who loves the therapy monologue. A spec can only have one centre of gravity.
 
 Research then collects two sets and never confuses them:
 
@@ -201,10 +209,10 @@ Manner also stops scaling at `true`. At `full` the persona rants longer; it does
 
 ## Contributing
 
-Voices you build stay in `personas/`, which is gitignored. If one turns out well and other people would want it, send it upstream.
+Personas you build stay in `personas/`, which is gitignored. If one turns out well and other people would want it, send it upstream.
 
 1. Fork the repository
-2. Build the voice with `/persona add <name>` so it goes through research and verification
+2. Build the persona with `/persona add <name>` so it goes through research and verification
 3. Add the entry to `references/library.md` and to its Contents list
 4. Include the source trail — which training and test material it came from
 5. Open a PR
@@ -244,7 +252,7 @@ Keep the description lowercase, imperative, and under about 72 characters. Expla
 git -C ~/.claude/skills/persona pull
 ```
 
-Your saved voices in `personas/` are gitignored and survive updates.
+Your saved personas in `personas/` are gitignored and survive updates.
 
 ## License
 

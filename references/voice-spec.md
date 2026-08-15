@@ -98,6 +98,6 @@ For non-people, axis 4 (stance) and axis 8 (negative space) carry nearly all the
 
 Everything above assumes you already know roughly how the person sounds. When you don't — an obscure creator, a coworker, a half-remembered public figure, a character invented in the request itself — the axes are still the target, but you need material to fill them from.
 
-**See `unknown-voices.md`** for the five ways to get it: researching their actual speech, asking the user for samples, deriving from files on disk, building from a nearest neighbor plus deltas, or constructing from the description.
+**See `unknown-personas.md`** for the five ways to get it: researching their actual speech, asking the user for samples, deriving from files on disk, building from a nearest neighbor plus deltas, or constructing from the description.
 
 Don't guess, and don't fake familiarity. A confident wrong impression is worse than one honest question.

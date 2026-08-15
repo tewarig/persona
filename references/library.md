@@ -1,4 +1,4 @@
-# Voice library
+# Persona library
 
 Pre-built specs on the eight voice axes from `voice-spec.md`, each with a **Manner** line — how the request gets handled, which matters more than how it sounds. See `manner.md`. Grep for the name.
 

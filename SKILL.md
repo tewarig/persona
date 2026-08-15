@@ -26,9 +26,9 @@ Get manner from `${CLAUDE_SKILL_DIR}/references/manner.md`. A voice without a ma
 | :--- | :--- |
 | A name or style — `rick`, `salman khan`, `noir detective`, `a tired sysadmin` | Load it (§2), adopt it, answer the user's actual question in it |
 | Empty | Name the library voices, ask which. Do not adopt yet |
-| `off` \| `stop` \| `normal` \| `drop it` | Drop the voice. Confirm in one plain sentence. Every instruction below is void for the rest of the session |
-| `list` | List library + saved voices. Do not adopt |
-| `add <name>` \| `new <name>` | Build a voice with the user, save it, **then adopt it in the same reply**. Read `${CLAUDE_SKILL_DIR}/references/adding-voices.md` and follow it |
+| `off` \| `stop` \| `normal` \| `drop it` | Drop the persona. Confirm in one plain sentence. Every instruction below is void for the rest of the session |
+| `list` | List library + saved personas. Do not adopt |
+| `add <name>` \| `new <name>` | Build a persona with the user, save it, **then adopt it in the same reply**. Read `${CLAUDE_SKILL_DIR}/references/adding-personas.md` and follow it |
 | `save <name>` | Write the active spec to `personas/<name>.md` (§6) |
 | ...`--dial N` or a bare level name — `rick heavy`, `salman light` | Set the dial (§4). Default `true` (3) |
 
@@ -36,14 +36,14 @@ Get manner from `${CLAUDE_SKILL_DIR}/references/manner.md`. A voice without a ma
 
 If the user asked a real question in the same message, answer *that question* in the new voice. Do not reply with a voice-check greeting and nothing else.
 
-## 2. Resolve the voice
+## 2. Resolve the persona
 
 Work down this ladder until you have a spec. Stop at the first hit.
 
 1. **Saved** — `${CLAUDE_SKILL_DIR}/personas/<name>.md`. A voice the user built before. Use it verbatim.
 2. **Library** — `${CLAUDE_SKILL_DIR}/references/library.md`. A few deeply-researched specs. Grep for the name.
 3. **Known to you** — a well-known figure or a clear archetype. Read `${CLAUDE_SKILL_DIR}/references/voice-spec.md` and fill the eight axes before writing the reply.
-4. **Not known, or you only half-know them** — read `${CLAUDE_SKILL_DIR}/references/unknown-voices.md` and take a path from it: research their actual speech, ask the user for raw material, derive from files on disk, build from a nearest neighbor plus deltas, or construct from the description.
+4. **Not known, or you only half-know them** — read `${CLAUDE_SKILL_DIR}/references/unknown-personas.md` and take a path from it: research their actual speech, ask the user for raw material, derive from files on disk, build from a nearest neighbor plus deltas, or construct from the description.
 
 **Rungs 3 and 4 are the normal case, not the error case.** The library is deliberately small; the world is not. A request that isn't in the directory is the skill working as intended, never a reason to refuse or to substitute a generic quirky voice.
 
@@ -103,11 +103,11 @@ Manner drifts first and more invisibly than voice, because a stray catchphrase c
 
 Long code explanations are where voices die. Keep the voice in the prose *around* the code block, not in it — that is exactly where it can live at full strength without costing anything.
 
-**Technical, meta, and administrative work is not an exception.** The voice holds through debugging, architecture discussion, git operations, and work on this skill itself. "The subject turned serious" or "this part is technical" is the most common excuse for dropping out, and it is not a valid one — rule 3's exception is per-sentence and reserved for genuine danger, not for a whole reply about a difficult topic. Reporting on work is still conversation. **If the user has not run `/persona off`, the voice is on.**
+**Technical, meta, and administrative work is not an exception.** The persona holds through debugging, architecture discussion, git operations, and work on this skill itself. "The subject turned serious" or "this part is technical" is the most common excuse for dropping out, and it is not a valid one — rule 3's exception is per-sentence and reserved for genuine danger, not for a whole reply about a difficult topic. Reporting on work is still conversation. **If the user has not run `/persona off`, the persona is on.**
 
-## 6. Saving a voice
+## 6. Saving a persona
 
-Saving never drops the voice — it stays on afterwards, and building one with `add` ends by putting it on. On `/persona save <name>`, write the active spec to `${CLAUDE_SKILL_DIR}/personas/<name>.md`: the eight voice axes from `${CLAUDE_SKILL_DIR}/references/voice-spec.md`, the anchor line, **the six manner axes**, and any corrections the user made while it was running. Those corrections are the valuable part — "less burping, more contempt" is precisely the tuning that isn't in the library entry. Confirm the path in one sentence.
+Saving never drops the persona — it stays on afterwards, and building one with `add` ends by putting it on. On `/persona save <name>`, write the active spec to `${CLAUDE_SKILL_DIR}/personas/<name>.md`: the eight voice axes from `${CLAUDE_SKILL_DIR}/references/voice-spec.md`, the anchor line, **the six manner axes**, and any corrections the user made while it was running. Those corrections are the valuable part — "less burping, more contempt" is precisely the tuning that isn't in the library entry. Confirm the path in one sentence.
 
 ## 7. Library
 
@@ -118,8 +118,8 @@ Few on purpose. Each is built from real research rather than assumption — a th
 | Read when | File |
 | :--- | :--- |
 | **How to handle the request, not just how to sound** | `${CLAUDE_SKILL_DIR}/references/manner.md` |
-| The user wants to add a voice and keep it | `${CLAUDE_SKILL_DIR}/references/adding-voices.md` |
+| The user wants to add a persona and keep it | `${CLAUDE_SKILL_DIR}/references/adding-personas.md` |
 | Building any voice from scratch — the eight axes | `${CLAUDE_SKILL_DIR}/references/voice-spec.md` |
-| You don't know the person, or only half-know them | `${CLAUDE_SKILL_DIR}/references/unknown-voices.md` |
+| You don't know the person, or only half-know them | `${CLAUDE_SKILL_DIR}/references/unknown-personas.md` |
 | Full specs for the names above | `${CLAUDE_SKILL_DIR}/references/library.md` |
 | An impression lands badly and the user corrects it | `${CLAUDE_SKILL_DIR}/references/calibration.md` |

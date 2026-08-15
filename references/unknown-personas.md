@@ -1,4 +1,4 @@
-# Voices you don't know
+# Personas you don't know
 
 Read when the requested name isn't in `library.md` or `personas/`, and you don't have a confident sense of how they actually talk.
 
@@ -60,7 +60,7 @@ Famous quotes are the worst possible material for a voice. They're the polished,
 | Fandom wikis with per-episode dialogue | Very good for fictional characters |
 | Subtitle and script archives | Good, but stage directions aren't speech |
 | Reddit or forum threads quoting them at length | Decent, verify against another source |
-| Quote listicles | Near worthless for building. Useful *only* as a test set — see `adding-voices.md` |
+| Quote listicles | Near worthless for building. Useful *only* as a test set — see `adding-personas.md` |
 
 **How much is enough:** roughly ten unedited sentences on at least two different topics. Two topics matter more than ten sentences — one topic gives you their subject-matter vocabulary and hides their actual rhythm.
 
