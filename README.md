@@ -1,8 +1,8 @@
 # persona
 
-A Claude Code skill that makes Claude answer in any voice — and, more usefully, any *manner* — a character, a celebrity, an archetype, a writing style, or your own.
+persona makes your coding agent answer in any voice — and, more usefully, any *manner* — a character, a celebrity, an archetype, a writing style, or your own. It is one skill, a handful of reference files, and a small library of specs built from real source material rather than guesswork.
 
-**"Voice" here is the writing sense.** This shapes how replies read; it doesn't produce audio. Which matters more than it sounds, because a real person's written register isn't their spoken one — see [Written voice, not spoken](references/voice-spec.md).
+**"Voice" here is the writing sense.** This shapes how replies read; it does not produce audio. That distinction matters more than it looks, because a real person's written register is not their spoken one.
 
 ```
 /persona rick
@@ -11,17 +11,82 @@ A Claude Code skill that makes Claude answer in any voice — and, more usefully
 /persona off
 ```
 
-## Install
+## Table of Contents
 
-Clone it straight into your personal skills directory:
+- [How it works](#how-it-works)
+- [Installation](#installation)
+  - [Claude Code, everywhere](#claude-code-everywhere)
+  - [One project only](#one-project-only)
+  - [Other harnesses](#other-harnesses)
+- [The Basic Workflow](#the-basic-workflow)
+- [Commands](#commands)
+  - [The dial](#the-dial)
+- [What's Inside](#whats-inside)
+  - [Voice library](#voice-library)
+  - [Reference files](#reference-files)
+- [When the voice isn't in the library](#when-the-voice-isnt-in-the-library)
+- [Adding a voice](#adding-a-voice)
+- [Philosophy](#philosophy)
+- [The floor](#the-floor)
+- [Contributing](#contributing)
+- [Updating](#updating)
+- [License](#license)
+
+## How it works
+
+You name a voice. Anything — a character, a public figure, your own writing, or a description invented on the spot. The skill does not start talking immediately.
+
+First it resolves the voice. If you have saved one before, that wins. Otherwise it checks a deliberately small library of researched specs, and if the name is not there — which is the normal case, not an error — it builds one. For someone with a public record that means researching how they *actually* speak, which is not the same as collecting their famous quotes. For a private person it means asking you for a few unedited lines rather than inventing them. For an invented character it means constructing from your description, stance first.
+
+Then it fills the axes. Fourteen of them: eight for voice, six for manner. This is the part that separates a working voice from a bad impression, because a spec built this way keeps functioning on topics the character never touched — which, in a coding session, is every topic.
+
+Only then does it answer, in voice, at whatever intensity you asked for, and it holds that for the rest of the session. Not just the vocabulary: what the reply leads with, whether it pushes back on your bad plan, how it treats your mistake, whether it asks permission or just acts.
+
+Underneath all of it, some things never move. Your code stays clean, destructive actions still get confirmed, and a failing test is still reported as failing no matter how upbeat the persona is.
+
+## Installation
+
+### Claude Code, everywhere
+
+Clone straight into your personal skills directory:
 
 ```bash
 git clone https://github.com/tewarig/persona.git ~/.claude/skills/persona
 ```
 
-That's it — `/persona` works in every project, in any session. Update with `git -C ~/.claude/skills/persona pull`.
+That is the whole install. `/persona` now works in every project, in any session.
 
-For one project only, clone into that repo's `.claude/skills/persona` instead and commit it, so everyone working in the repo gets it automatically.
+### One project only
+
+Clone into that repository's skills directory and commit it, so everyone working in the repo gets it without installing anything:
+
+```bash
+git clone https://github.com/tewarig/persona.git .claude/skills/persona
+```
+
+### Other harnesses
+
+This follows the [Agent Skills](https://agentskills.io) open standard, so `SKILL.md` should load anywhere that standard is supported — but it is only tested in Claude Code.
+
+One known limitation: `argument-hint` is a Claude Code extension, not part of the spec. Uploading this to claude.ai or packaging it with `package_skill.py` will hard-error on that field until it is stripped. `~/.claude/skills/` is local-only, so Cowork sessions, cloud sessions and scheduled routines do not see it.
+
+## The Basic Workflow
+
+1. **Invoke** — `/persona <name>`, or just say "talk like Rick." The skill triggers on plain requests too, including manner-only ones like "stop hedging" or "quit the hand-holding."
+
+2. **Resolve** — Works down a ladder: your saved voices, then the library, then figures the model knows well, then five ways to build one from nothing. It will not guess at someone it does not know, and it will not fake familiarity.
+
+3. **Build** — Fills eight voice axes (lexicon, syntax, register, stance, reference well, tics, rhetorical moves, negative space) and six manner axes (lead, density, certainty, initiative, friction, repair). Writes an invented anchor line as a tuning fork.
+
+4. **Verify** — For a newly built voice, checks the spec against known lines: *could these axes have produced this?* A failure points at stance or friction almost every time. Then shows you one sample line and asks whether it landed.
+
+5. **Adopt** — Answers your actual question in the voice, at your chosen intensity, and holds it across turns. Technical work is not an exception; the voice survives debugging and git operations.
+
+6. **Tune** — Plain-language corrections map to specific axes. "Too much" moves the dial. "That's not really him" re-derives stance. "Stop agreeing with everything" raises friction.
+
+7. **Save** — `/persona save <name>` persists the spec *and your corrections*, which are the part no library entry can predict. Saved voices override library entries of the same name.
+
+**The floor holds at every step.** Style never reaches your code, and manner never overrides a confirmation.
 
 ## Commands
 
@@ -31,9 +96,11 @@ For one project only, clone into that repo's `.claude/skills/persona` instead an
 | `/persona <name> heavy` | Set the dial by name |
 | `/persona <name> --dial 4` | Same thing, by number |
 | `/persona off` | Back to normal |
-| `/persona list` | Show library + saved voices |
+| `/persona list` | Show library plus saved voices |
 | `/persona add <name>` | Build a new voice with you — interview, research, verify, save, then wear it |
 | `/persona save <name>` | Persist the current voice, including your corrections |
+
+Arguments are not limited to the library. `/persona a Victorian butler who disapproves of your architecture` works; the skill derives a spec for it.
 
 ### The dial
 
@@ -47,21 +114,24 @@ Five stops, by number or name. Default is `true`.
 | **4** | `heavy` | tics, asides, tangents |
 | **5** | `full` | cosplay; the persona drives the structure |
 
-The scale isn't linear loudness — it's **distance from accurate**. `true` is the correct portrayal, not the midpoint; below it is deliberate dilution and above it is deliberate exaggeration. Which is why "too much" at `heavy` means come back toward `true`, not become a different character.
+The scale is not linear loudness — it is **distance from accurate**. `true` is the correct portrayal, not the midpoint; below it is deliberate dilution and above it is deliberate exaggeration. Which is why "too much" at `heavy` means come back toward `true`, not become a different character.
 
 Names are for typing, numbers are for adjusting — "one notch up" stays unambiguous.
 
-Claude also picks it up from plain requests like "talk like Rick" — no slash needed.
+## What's Inside
 
-Arguments aren't limited to the library. `/persona a Victorian butler who disapproves of your architecture` works; the skill derives a spec for it.
+### Voice library
 
-## How it works
+Four entries, on purpose. Each is built from real source material with a documented training and test set.
 
-Two ideas do the work.
+- **rick** — Rick Sanchez. Contempt for the question, correct on the physics. Calls you Morty
+- **salman-khan** — Shrinks your problem, one path, no hedging. Written register drawn from his tweets
+- **shah-rukh-khan** — Makes you feel the idea before you understand it. Sourced from TED and Yale
+- **eli5** — Analogy, then the real term. A functional style rather than a person
 
-**A voice is not a catchphrase list.** Catchphrases collapse the moment the conversation goes somewhere they don't cover, which in a coding session is immediately. So every voice is built on eight axes — lexicon, syntax, register, stance, reference well, tics, rhetorical moves, negative space — reproducing *how someone generates language* rather than *what they once said*. The test a spec has to pass: could this voice explain a CrashLoopBackOff and still read like itself?
+Nine further entries were cut for being written from assumption. A thin guessed spec is worse than no spec, because it hands you a confident wrong impression instead of routing to a real build.
 
-**It's not a costume, it's a way of handling the work.** Voice is only half. The other half is *manner* — what the reply leads with, how long it runs, whether it pushes back on a bad plan, how it treats your mistake, whether it asks or just acts. Voice is what you notice in two lines; manner is what you feel across a session, and it's the half that changes the replies you actually get. Rick isn't Rick because he says *Morty* — he's Rick because he tells you the question was stupid and then answers it correctly without being asked twice.
+### Reference files
 
 ```
 SKILL.md                  the engine — the ladder, rules, the dial, holding it across turns
@@ -69,67 +139,94 @@ references/
   manner.md               the six manner axes, and the floor they never cross
   voice-spec.md           the eight voice axes; deriving any voice from nothing
   unknown-voices.md       five ways to build a voice you don't already know
-  library.md              4 researched specs, voice + manner
   adding-voices.md        the guided flow for building and keeping a new voice
+  library.md              the four researched specs, voice + manner
   calibration.md          six failure modes and their fixes
 personas/                 voices you save (gitignored — yours stay local)
 ```
 
-Reference files load only when needed, so the library costs nothing until you use it.
+Reference files load only when needed, so the library costs nothing in context until it is used.
 
-### The floor
+## When the voice isn't in the library
 
-Manner is riskier than voice, because voice is cosmetic and manner decides what gets said and done. Some things don't move for any persona at any dial: **a destructive action is always confirmed** — "this character wouldn't ask permission" never justifies skipping a confirmation on something irreversible — a failing test is always reported as failing, real risk always gets flagged, and a confident manner can drop the hedges but can't assert things that haven't been verified. When the floor collides with the persona, the floor wins and the voice bends around it.
-
-Manner also stops scaling at `true`. At `full` Rick rants longer; he doesn't get more willing to skip your confirmation prompt.
-
-## When the character isn't in the library
-
-The library is four names; the world isn't. A name it doesn't recognize is the normal case, not an error, so the skill works down a ladder instead of guessing: saved voices → library → figures it knows well → and then five ways to build one from nothing.
+The library is four names; the world is not. An unrecognised name is the normal path, not a fallback.
 
 | Situation | What it does |
 | :--- | :--- |
-| Public figure with a real record | Searches for **ordinary speech** — long interview and podcast transcripts, per-episode wiki dialogue. Explicitly *not* quote listicles: famous quotes are polished, atypical moments, and building from them is what produces bad impressions |
-| Someone private — your coworker, a small creator | Asks you for 5–10 unedited lines rather than inventing them |
-| You, or your team's house style | Reads your commits, notes, or docs and derives a spec from them |
-| Half-known, or a recognizable type | Nearest voice it knows well, plus stated deltas — "like Rick but Indian and less mean" is a complete instruction |
-| A character that doesn't exist | Constructs from the description, deriving stance first |
+| Public figure with a real record | Searches for **ordinary speech** — long interviews, podcast transcripts, per-episode dialogue. Explicitly *not* quote listicles |
+| Someone private — a coworker, a small creator | Asks you for 5–10 unedited lines rather than inventing them |
+| You, or your team's house style | Reads your commits, notes or docs and derives a spec from those |
+| Half-known, or a recognisable type | Nearest voice it knows well, plus your deltas — "like Rick but Indian and less mean" is a complete instruction |
+| A character that does not exist | Constructs from the description, deriving stance first |
 
-When confidence is low it writes one sample line and asks "is this him?" before committing a whole session to a wrong voice. It won't fake familiarity with someone it doesn't know.
-
-## Two things it deliberately won't do
-
-**Style never touches artifacts.** Code, commands, file paths, commit messages, and anything written to disk stay plain. The voice lives in chat prose. Nobody wants Rick Sanchez in their git history. Override per-invocation with `--in-code`.
-
-**Real people get an impression, not a forgery.** Affectionate parody is the register. The skill won't state as fact that someone said something, or generate a fake quote, tweet, or endorsement built to pass as genuine. Anchor lines in the library are invented illustrations, not real quotes.
-
-## Tuning it
-
-If an impression is off, say so in plain language — "too much," "that's not really him," "you're just doing the catchphrases." The skill maps those to specific fixes in `calibration.md`. Once a voice is right, `/persona save <name>` keeps the tuning.
-
-The most useful voice in here probably isn't a celebrity. Ask Claude to read your own commits or notes and derive a spec, save it, and drafted text stops sounding like an assistant.
+When confidence is low it writes one sample line and asks before committing a session to a wrong voice.
 
 ## Adding a voice
 
-`/persona add <name>` runs a guided build: a three-question interview, research, a verification pass, a save — and then it puts the voice on, in the same reply. Building a voice ends with wearing it; handing back a filepath and waiting to be asked is the most disappointing way to finish.
+`/persona add <name>` runs a guided build: a three-question interview, research, a verification pass, a save — and then it puts the voice on in the same reply. Building a voice ends with wearing it.
 
-The interview asks who, **a line of theirs you love**, and what you want the voice *for*. That middle question does more work than it looks — every well-known figure has several versions, and the quote you reach for first says which one you mean. Someone who loves Rick's nihilism speech wants a different Rick than someone who loves the therapy monologue. A spec can only have one centre of gravity.
+The interview asks who, **a line of theirs you love**, and what you want the voice *for*. The middle question does the most work. Every well-known figure has several versions, and the quote you reach for first says which one you mean — someone who loves Rick's nihilism speech wants a different Rick than someone who loves the therapy monologue. A spec can only have one centre of gravity.
 
-Research then collects two separate sets, and never confuses them:
+Research then collects two sets and never confuses them:
 
 | | From | For |
 | :--- | :--- | :--- |
 | **Training** | Long interviews, transcripts, per-episode dialogue — them being ordinary | Filling the axes. Rhythm, stance and manner live here |
 | **Test** | The famous lines. Quote listicles are fine *here* | Checking the finished spec. Never for building it |
 
-Most people get this backwards. Famous quotes are the least representative thing a person ever said — polished, atypical, heavily edited — and building from them produces a keyword generator. But they're excellent for verification, because everyone already agrees they sound right. So the finished spec gets tested against them: *could these axes have produced this line?* If not, it's nearly always stance or friction, and those get re-derived.
+Most people get this backwards. Famous quotes are the least representative thing a person ever said — polished, atypical, heavily edited — and building from them produces a keyword generator. But they are excellent for verification, because everyone already agrees they sound right. So the finished spec is tested against them: *could these axes have produced this line?*
 
-Saved voices land in `personas/` — gitignored, yours. A saved voice overrides a library entry of the same name, so you can keep your own Rick without touching the shipped one.
+## Philosophy
 
-If one turns out well and other people would want it, the skill offers to send it upstream. The bar for the shipped library is **built from real sources, not assumption** — nine entries were cut for failing exactly that. The four that remain carry a source trail naming their training and test sets, and a contributed entry needs the same.
+- **Axes over catchphrases** — Reproduce how someone generates language, not what they once said. A catchphrase list dies the moment the conversation moves
+- **Manner over voice** — How the request gets handled outlasts how it reads. Voice is what you notice in two lines; manner is what you feel across a session
+- **Research over assumption** — A guessed spec is worse than no spec
+- **Written, not spoken** — Chat is writing. A person's written register is shorter and stranger than their speech, and the written one is the target
+- **Substance survives style** — The answer is identical at every dial. Only the wrapper changes
+- **Few on purpose** — A small library with a high bar beats a long list of guesses
+
+## The floor
+
+Manner is riskier than voice, because voice is cosmetic and manner decides what actually gets said and done. Some things do not move for any persona at any dial:
+
+- **A destructive action is always confirmed.** "This character wouldn't ask permission" never justifies skipping a confirmation on something irreversible
+- **A failure is always reported as a failure**, however upbeat the persona
+- **Real risk always gets flagged**, even when worrying is out of character
+- **Sounding certain is not being certain.** A confident manner may drop hedges; it may not assert what has not been verified
+- **Style never reaches artifacts.** Code, commands, config, commit messages and any file written to disk stay plain
+- **Real people get an impression, not a forgery.** No fabricated quotes, tweets or endorsements presented as genuine
+
+Manner also stops scaling at `true`. At `full` the persona rants longer; it does not become more willing to skip your confirmation prompt. When the floor collides with the persona, the floor wins and the voice bends around it.
+
+## Contributing
+
+Voices you build stay in `personas/`, which is gitignored. If one turns out well and other people would want it, send it upstream.
+
+1. Fork the repository
+2. Build the voice with `/persona add <name>` so it goes through research and verification
+3. Add the entry to `references/library.md` and to its Contents list
+4. Include the source trail — which training and test material it came from
+5. Open a PR
+
+What a contributed entry needs:
+
+- The eight voice axes and a **Manner** line
+- An **invented** anchor line, never a real quote used as the tuning fork
+- Any genuine quotes kept separate and marked as genuine, with a source
+- For real people: parody as the register, no fabricated statements
+
+The bar is **built from real sources, not assumption**. Nine entries were cut for failing exactly that.
+
+## Updating
+
+```bash
+git -C ~/.claude/skills/persona pull
+```
+
+Your saved voices in `personas/` are gitignored and survive updates.
 
 ## License
 
 MIT — see [LICENSE](LICENSE).
 
-The characters themselves aren't mine. Rick Sanchez, Ben Tennyson and the rest belong to their respective owners, and the specs here are commentary and parody, not licensed material. Where a real person is involved the skill's own rules apply: affectionate impression, never forgery. Anchor lines are invented; genuine quotes are marked as genuine and sourced.
+The characters are not covered by it. Rick Sanchez, Ben Tennyson and the rest belong to their respective owners, and the specs here are commentary and parody, not licensed material. Where a real person is involved the skill's own rules apply: affectionate impression, never forgery. Anchor lines are invented; genuine quotes are marked as genuine and sourced.
